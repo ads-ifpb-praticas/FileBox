@@ -16,18 +16,12 @@ public class Usuario {
     private int _id;
     private String _nome, email,senha;
     private List<Arquivo> _arquivos = new LinkedList<>();
-    private boolean _ativo = true;
+    
     
     public Usuario() {
     }
 
-    public boolean isAtivo() {
-        return _ativo;
-    }
-
-    public void setAtivo(boolean _ativo) {
-        this._ativo = _ativo;
-    }
+    
 
     
     public Usuario(int _id, String _nome, String email, String senha) {
