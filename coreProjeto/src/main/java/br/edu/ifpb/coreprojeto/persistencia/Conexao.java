@@ -12,6 +12,7 @@ import java.sql.SQLException;
 /**
  *
  * @author laerton
+ * data 03/10
  */
 public class Conexao {
     private static Conexao _instance ;
