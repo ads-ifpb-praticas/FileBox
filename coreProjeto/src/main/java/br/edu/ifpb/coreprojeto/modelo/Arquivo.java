@@ -13,58 +13,67 @@ import java.util.List;
  * @author laerton
  */
 public class Arquivo {
-    private int _id, _idUser;
-    private String _endereco;
-    private List<Usuario> _compartilahdo  = new LinkedList<>();
+    private int id, idUser;
+    private String endereco;
+    private List<Usuario> compartilahdo  = new LinkedList<>();
+    private long tamanho;
 
-    public Arquivo(int _id, int _idUser, String _endereco) {
-        this._id = _id;
-        this._idUser = _idUser;
-        this._endereco = _endereco;
+    public Arquivo(int id, int idUser, String endereco, long tamanho) {
+        this.id = id;
+        this.idUser = idUser;
+        this.endereco = endereco;
+        this.tamanho = tamanho;
     }
 
-    public Arquivo() {
+    public long getTamanho() {
+        return tamanho;
     }
+
+    public void setTamanho(long tamanho) {
+        this.tamanho = tamanho;
+    }
+    
+
 
     public List<Usuario> getCompartilahdo() {
-        return _compartilahdo;
+        return compartilahdo;
     }
 
-    public void setCompartilahdo(List<Usuario> _compartilahdo) {
-        this._compartilahdo = _compartilahdo;
+    public void setCompartilahdo(List<Usuario> compartilahdo) {
+        this.compartilahdo = compartilahdo;
     }
 
     
     public void compartilhar (Usuario user){
-        this._compartilahdo.add(user);
+        this.compartilahdo.add(user);
     }
     
     public void remComparilhar(Usuario user){
-        this._compartilahdo.remove(user);
+        this.compartilahdo.remove(user);
     }
 
     public int getId() {
-        return _id;
+        return id;
     }
 
-    public void setId(int _id) {
-        this._id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEndereco() {
-        return _endereco;
+        return endereco;
     }
 
-    public void setEndereco(String _endereco) {
-        this._endereco = _endereco;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public int getIdUser() {
-        return _idUser;
+        return idUser;
     }
 
-    public void setIdUser(int _idUser) {
-        this._idUser = _idUser;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
     
 }

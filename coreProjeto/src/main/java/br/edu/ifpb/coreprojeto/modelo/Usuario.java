@@ -13,55 +13,49 @@ import java.util.List;
  * @author laerton
  */
 public class Usuario {
-    private int _id;
-    private String _nome, email,senha;
-    private List<Arquivo> _arquivos = new LinkedList<>();
+    private int id;
+    private String nome, email , senha;
+    private List<Arquivo> arquivos = new LinkedList<>();
     
     
-    public Usuario() {
-    }
-
-    
-
-    
-    public Usuario(int _id, String _nome, String email, String senha) {
-        this._id = _id;
-        this._nome = _nome;
+    public Usuario(int id, String _nome, String email, String senha) {
+        this.id = id;
+        this.nome = _nome;
         this.email = email;
         this.senha = senha;
     }
 
     
     public List<Arquivo> getArquivos() {
-        return _arquivos;
+        return arquivos;
     }
 
-    public void setArquivos(List<Arquivo> _arquivos) {
-        this._arquivos = _arquivos;
+    public void setArquivos(List<Arquivo> arquivos) {
+        this.arquivos = arquivos;
     }
     
     public void addArquivo(Arquivo arquivo){
-        this._arquivos.add(arquivo);
+        this.arquivos.add(arquivo);
     }
     
     public void remArquivo(Arquivo arquivo){
-        this._arquivos.remove(arquivo);
+        this.arquivos.remove(arquivo);
     }
     
     public int getId() {
-        return _id;
+        return id;
     }
 
-    public void setId(int _id) {
-        this._id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
-        return _nome;
+        return nome;
     }
 
-    public void setNome(String _nome) {
-        this._nome = _nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
