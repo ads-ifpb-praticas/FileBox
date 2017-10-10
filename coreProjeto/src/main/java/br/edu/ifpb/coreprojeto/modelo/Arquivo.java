@@ -12,68 +12,93 @@ import java.util.List;
  *
  * @author laerton
  */
-public class Arquivo {
+public class Arquivo implements INode{
     private int id, idUser;
-    private String endereco;
+    private String endereco, nome;
     private List<Usuario> compartilahdo  = new LinkedList<>();
     private long tamanho;
+    private final TypeNode type = TypeNode.ARQUIVO;
 
-    public Arquivo(int id, int idUser, String endereco, long tamanho) {
-        this.id = id;
-        this.idUser = idUser;
-        this.endereco = endereco;
-        this.tamanho = tamanho;
+    @Override
+    public String getNome() {
+        return this.nome;
     }
 
-    public long getTamanho() {
-        return tamanho;
+    @Override
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setTamanho(long tamanho) {
-        this.tamanho = tamanho;
-    }
-    
-
-
-    public List<Usuario> getCompartilahdo() {
-        return compartilahdo;
+    @Override
+    public TypeNode getTypeNode() {
+        return this.type;
     }
 
-    public void setCompartilahdo(List<Usuario> compartilahdo) {
-        this.compartilahdo = compartilahdo;
-    }
-
-    
-    public void compartilhar (Usuario user){
-        this.compartilahdo.add(user);
-    }
-    
-    public void remComparilhar(Usuario user){
-        this.compartilahdo.remove(user);
-    }
-
+    @Override
     public int getId() {
-        return id;
+        return this.id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
+    @Override
     public int getIdUser() {
-        return idUser;
+        return this.idUser;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    @Override
+    public void setIdUser(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public String getEndereco() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setEndereco(String endereco) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getTamanho() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTamanho(Integer tamanho) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Usuario> getCompartilhado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setCompartilhado(List<Usuario> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addCompartilhado(Usuario user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remCompartilhado(Usuario user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remAllCompartilhado() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }
