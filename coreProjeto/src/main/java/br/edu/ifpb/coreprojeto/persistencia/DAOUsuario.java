@@ -7,7 +7,6 @@ package br.edu.ifpb.coreprojeto.persistencia;
 
 import br.edu.ifpb.coreprojeto.modelo.Usuario;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

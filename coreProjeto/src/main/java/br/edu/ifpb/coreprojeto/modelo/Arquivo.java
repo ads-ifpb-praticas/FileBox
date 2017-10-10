@@ -16,7 +16,7 @@ public class Arquivo implements INode{
     private int id, idUser;
     private String endereco, nome;
     private List<Usuario> compartilahdo  = new LinkedList<>();
-    private long tamanho;
+    private Integer tamanho;
     private final TypeNode type = TypeNode.ARQUIVO;
 
     @Override
@@ -51,52 +51,52 @@ public class Arquivo implements INode{
 
     @Override
     public void setIdUser(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.idUser = id;
     }
 
     @Override
     public String getEndereco() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.endereco;
     }
 
     @Override
     public void setEndereco(String endereco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.endereco = endereco;
     }
 
     @Override
     public Integer getTamanho() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.tamanho;
     }
 
     @Override
     public void setTamanho(Integer tamanho) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.tamanho = tamanho;
     }
 
     @Override
     public List<Usuario> getCompartilhado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return compartilahdo;
     }
 
     @Override
     public void setCompartilhado(List<Usuario> lista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.compartilahdo =lista;
     }
 
     @Override
     public void addCompartilhado(Usuario user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.compartilahdo.add(user);
     }
 
     @Override
     public void remCompartilhado(Usuario user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.compartilahdo.remove(user);
     }
 
     @Override
     public void remAllCompartilhado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.compartilahdo.removeAll(compartilahdo);
     }
 
     
