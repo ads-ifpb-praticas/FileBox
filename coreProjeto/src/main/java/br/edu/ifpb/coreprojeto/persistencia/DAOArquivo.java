@@ -15,7 +15,13 @@ public class DAOArquivo implements IDAO<Arquivo>{
 
     @Override
     public Arquivo salvar(Arquivo o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String SQL = "";
+        if (o.getId() == 0){
+            SQL = "";
+        }else{
+            SQL = "";
+        }
+        return persiste(SQL, o);
     }
 
     @Override
@@ -25,6 +31,10 @@ public class DAOArquivo implements IDAO<Arquivo>{
 
     @Override
     public Arquivo buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Arquivo persiste(String SQL, Arquivo o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

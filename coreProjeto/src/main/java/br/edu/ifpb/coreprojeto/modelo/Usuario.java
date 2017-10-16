@@ -7,39 +7,53 @@ package br.edu.ifpb.coreprojeto.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Classe cuida dos dados de um usuario.
  * @author laerton
  */
+@Entity
 public class Usuario {
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String nome, email , senha;
-    private List<Arquivo> arquivos = new LinkedList<>();
+    @Column(length = 255, nullable = false)
+    private String nome;
+    @Column(length = 255, nullable = false)
+    private String email;
+    @Column(length = 255, nullable = false)
+    private String senha;
+    @OneToMany()
+    private List<AbsNode> nodes = new LinkedList<>();
     
     
-    public Usuario(int id, String _nome, String email, String senha) {
+    public Usuario(int id, String nome, String email, String senha) {
         this.id = id;
-        this.nome = _nome;
+        this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
     
-    public List<Arquivo> getArquivos() {
-        return arquivos;
+    public List<AbsNode> getArquivos() {
+        return nodes;
     }
 
-    public void setArquivos(List<Arquivo> arquivos) {
-        this.arquivos = arquivos;
+    public void setArquivos(List<AbsNode> arquivos) {
+        this.nodes = arquivos;
     }
     
-    public void addArquivo(Arquivo arquivo){
-        this.arquivos.add(arquivo);
+    public void addArquivo(AbsNode arquivo){
+        this.nodes.add(arquivo);
     }
     
-    public void remArquivo(Arquivo arquivo){
-        this.arquivos.remove(arquivo);
+    public void remArquivo(AbsNode arquivo){
+        this.nodes.remove(arquivo);
     }
     
     public int getId() {

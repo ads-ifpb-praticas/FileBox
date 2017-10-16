@@ -7,98 +7,58 @@ package br.edu.ifpb.coreprojeto.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
- *
+ * Classe relacionada a um arquivo.
  * @author laerton
  */
-public class Arquivo implements INode{
-    private int id, idUser;
-    private String endereco, nome;
-    private List<Usuario> compartilahdo  = new LinkedList<>();
-    private Integer tamanho;
-    private final TypeNode type = TypeNode.ARQUIVO;
 
-    @Override
-    public String getNome() {
-        return this.nome;
-    }
+public class Arquivo extends AbsNode{
 
-    @Override
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
-    @Override
-    public TypeNode getTypeNode() {
-        return this.type;
-    }
-
-    @Override
-    public int getId() {
-        return this.id;
-    }
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public int getIdUser() {
-        return this.idUser;
-    }
-
-    @Override
-    public void setIdUser(int id) {
-        this.idUser = id;
-    }
-
-    @Override
-    public String getEndereco() {
-        return this.endereco;
-    }
-
-    @Override
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    @Override
-    public Integer getTamanho() {
-        return this.tamanho;
+    public Arquivo() {
+        super.type = TypeNode.ARQUIVO;
     }
 
     @Override
     public void setTamanho(Integer tamanho) {
-        this.tamanho = tamanho;
+        super.tamanho =tamanho;
+    }
+
+    @Override
+    public Integer getTamanho() {
+        return super.tamanho;
     }
 
     @Override
     public List<Usuario> getCompartilhado() {
-        return compartilahdo;
+        return super.compartilahdo;
     }
 
     @Override
-    public void setCompartilhado(List<Usuario> lista) {
-        this.compartilahdo =lista;
+    public void setCompartilhado(List<Usuario> usuarios) {
+        super.compartilahdo=usuarios;
     }
 
     @Override
     public void addCompartilhado(Usuario user) {
-        this.compartilahdo.add(user);
+        super.compartilahdo.add(user);
     }
 
     @Override
     public void remCompartilhado(Usuario user) {
-        this.compartilahdo.remove(user);
+        super.compartilahdo.remove(user);
     }
 
     @Override
     public void remAllCompartilhado() {
-        this.compartilahdo.removeAll(compartilahdo);
+        super.compartilahdo = new LinkedList<>();
     }
-
+    
     
     
 }

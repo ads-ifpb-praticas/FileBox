@@ -5,10 +5,13 @@
  */
 package br.edu.ifpb.coreprojeto.modelo;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author laerton
  */
+@Entity
 enum TypeNode {
     
     DIRETORIO (0), ARQUIVO (1);
