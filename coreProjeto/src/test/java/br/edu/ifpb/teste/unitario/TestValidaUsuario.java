@@ -33,7 +33,7 @@ public class TestValidaUsuario {
      private Usuario user3;
      private Usuario user4;
      private Usuario user5;
-     private Usuario user6;
+     
      
      @Before
      public void  setUp(){
@@ -41,7 +41,7 @@ public class TestValidaUsuario {
          user2 = new Usuario(1, "", "laertonuol.com.br", "");
          user3 = new Usuario(1, null, "laerton@uolcombr", null);
          user4 = new Usuario(1, "Laerton#$##", "", "495798");
-         user4 = new Usuario(1, "Laerton#$##", null, "495798");
+         user5 = new Usuario(1, "Laerton#$##", null, "495798");
      }
     
     
@@ -53,5 +53,50 @@ public class TestValidaUsuario {
      @Test(expected = UsuarioException.class)
      public void testValidaNomeNull() throws UsuarioException{
          assertTrue(ValidaUsuario.ValidaNome(user3.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaNomeEmBranco() throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user2.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaNomeCaracteres() throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user4.getNome()));
+     }
+     
+     @Test
+     public void testValidaEmail()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user1.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaEmailNull()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user5.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaEmailIncompleto()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user3.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaEmailVazio()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user4.getNome()));
+     }
+     
+     @Test
+     public void testValidaSenha()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user1.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaSenhaNull()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user3.getNome()));
+     }
+     
+     @Test(expected = UsuarioException.class)
+     public void testValidaSenhaVasia()throws UsuarioException{
+         assertTrue(ValidaUsuario.ValidaNome(user2.getNome()));
      }
 }
