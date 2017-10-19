@@ -46,7 +46,7 @@ public class ValidaUsuario {
      * @throws UsuarioException Nao aceita em branco, nulo e deve conter @ e .
      */
     public static boolean ValidaEmail(String email) throws UsuarioException{
-        if (email.equals(null)){
+        if (email == null){
             throw  new UsuarioException("Email nao pode ser nulo.");
         }
   
@@ -66,7 +66,7 @@ public class ValidaUsuario {
      * @throws UsuarioException Nao aceita senhas nulas ou em branco.
      */
     public static boolean validaSenha(String senha) throws UsuarioException{
-        if (senha.equals(null)){
+        if (senha == null){
             throw  new UsuarioException("Senha nao pode ser nulo.");
         }
         if (senha.trim().equals("")){

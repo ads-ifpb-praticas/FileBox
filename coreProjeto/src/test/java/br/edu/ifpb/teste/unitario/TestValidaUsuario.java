@@ -67,36 +67,36 @@ public class TestValidaUsuario {
      
      @Test
      public void testValidaEmail()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user1.getNome()));
+         assertTrue(ValidaUsuario.ValidaEmail(user1.getEmail()));
      }
      
      @Test(expected = UsuarioException.class)
      public void testValidaEmailNull()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user5.getNome()));
+         assertTrue(ValidaUsuario.ValidaEmail(user5.getEmail()));
      }
      
      @Test(expected = UsuarioException.class)
      public void testValidaEmailIncompleto()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user3.getNome()));
+         assertTrue(ValidaUsuario.ValidaEmail(user3.getEmail()));
      }
      
      @Test(expected = UsuarioException.class)
      public void testValidaEmailVazio()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user4.getNome()));
+         assertTrue(ValidaUsuario.ValidaEmail(user4.getEmail()));
      }
      
      @Test
      public void testValidaSenha()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user1.getNome()));
+         assertTrue(ValidaUsuario.validaSenha(user1.getSenha()));
      }
      
      @Test(expected = UsuarioException.class)
      public void testValidaSenhaNull()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user3.getNome()));
+         assertTrue(ValidaUsuario.validaSenha(user3.getSenha()));
      }
      
      @Test(expected = UsuarioException.class)
      public void testValidaSenhaVasia()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaNome(user2.getNome()));
+         assertTrue(ValidaUsuario.validaSenha(user2.getSenha()));
      }
 }

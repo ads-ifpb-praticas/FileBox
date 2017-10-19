@@ -13,6 +13,7 @@ import br.edu.ifpb.coreprojeto.modelo.TypeNode;
 import br.edu.ifpb.coreprojeto.modelo.Usuario;
 import br.edu.ifpb.coreprojeto.persistencia.DAONODE;
 import br.edu.ifpb.coreprojeto.persistencia.DAOUsuario;
+import br.edu.ifpb.validadores.ValidaUsuario;
 import java.util.List;
 
 
@@ -33,6 +34,7 @@ public class UsuarioServer
     }
 
     public UsuarioServer(Usuario user) {
+        
         this.user = user;
         dao = new DAOUsuario();
         daoNode = new DAONODE();
