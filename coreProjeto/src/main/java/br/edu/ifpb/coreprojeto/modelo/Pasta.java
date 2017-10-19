@@ -5,28 +5,30 @@
  */
 package br.edu.ifpb.coreprojeto.modelo;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  * Classe relacionanda a uma pasta dpe arquivos.
  * @author laerton
  */
-public class Pasta extends AbsNode{
-
+@Entity
+public class Pasta extends AbsNode {
+    
+    @OneToMany(cascade = CascadeType.ALL)
     private List<AbsNode> conteudo = new LinkedList<>();
 
     public Pasta() {
         super.type = TypeNode.DIRETORIO;
     }
     
-    
     @Override
-    public void setTamanho(Integer tamanho) {
-        
-    }
-
-    @Override
+    @Transient
     public Integer getTamanho() {
         Integer tamanho = 0;
         for (AbsNode absNode : conteudo) {
@@ -46,14 +48,19 @@ public class Pasta extends AbsNode{
 
     @Override
     public void setCompartilhado(List<Usuario> usuarios) {
-        
+        this.users = usuarios;
     }
 
     @Override
-    public void addCompartilhado(Usuario user) {
-        for (AbsNode absNode : conteudo) {
+    public void addCompartilhado(Usuario user) throws Exception {
+        super.addCompartilhado(user);
+        
+        for (AbsNode absNode : conteudo)
+        {
             absNode.addCompartilhado(user);
         }
+        this.users.add(user);
+        
     }
 
     @Override
@@ -61,6 +68,7 @@ public class Pasta extends AbsNode{
         for (AbsNode absNode : conteudo) {
             absNode.remCompartilhado(user);
         }
+        this.users.remove(user);
     }
 
     @Override
@@ -79,15 +87,15 @@ public class Pasta extends AbsNode{
     }
     
     public void addNode(AbsNode node){
-        node.setNode(this);
+        node.setParent(this);
+        node.setUsuario(this.Usuario);
+        node.setEndereco(this.endereco +"\\" + node.getEndereco());
         conteudo.add(node);
     }
    
     public void remNode(AbsNode node){
         conteudo.remove(node);
     }
-    
-    
     
     
 }

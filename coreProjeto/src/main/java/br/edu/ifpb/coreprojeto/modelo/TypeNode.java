@@ -11,8 +11,8 @@ import javax.persistence.Entity;
  *
  * @author laerton
  */
-@Entity
-enum TypeNode {
+
+public enum TypeNode {
     
     DIRETORIO (0), ARQUIVO (1);
     private int value;

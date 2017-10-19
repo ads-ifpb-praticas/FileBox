@@ -16,15 +16,18 @@ import javax.persistence.Id;
  * Classe relacionada a um arquivo.
  * @author laerton
  */
-
+@Entity
 public class Arquivo extends AbsNode{
-
-
-    public Arquivo() {
+    
+    
+    
+    public Arquivo() 
+    {
         super.type = TypeNode.ARQUIVO;
+        this.endereco = "";
     }
 
-    @Override
+    
     public void setTamanho(Integer tamanho) {
         super.tamanho =tamanho;
     }
@@ -36,28 +39,32 @@ public class Arquivo extends AbsNode{
 
     @Override
     public List<Usuario> getCompartilhado() {
-        return super.compartilahdo;
+        return super.users;
     }
 
     @Override
     public void setCompartilhado(List<Usuario> usuarios) {
-        super.compartilahdo=usuarios;
+        super.users=usuarios;
     }
 
     @Override
-    public void addCompartilhado(Usuario user) {
-        super.compartilahdo.add(user);
+    public void addCompartilhado(Usuario user) throws Exception {
+        super.addCompartilhado(user);
+        this.users.add(user);
     }
 
     @Override
     public void remCompartilhado(Usuario user) {
-        super.compartilahdo.remove(user);
+        this.users.remove(user);
     }
 
     @Override
     public void remAllCompartilhado() {
-        super.compartilahdo = new LinkedList<>();
+        this.users = new LinkedList<>();
     }
+
+    
+    
     
     
     

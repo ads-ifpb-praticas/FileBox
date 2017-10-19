@@ -10,6 +10,7 @@ package br.edu.ifpb.coreprojeto.persistencia;
  * @author laerton
  */
 public interface IDAO <T> {
+    
     T salvar(T o);
     void excluir(T o);
     T buscar(int id);

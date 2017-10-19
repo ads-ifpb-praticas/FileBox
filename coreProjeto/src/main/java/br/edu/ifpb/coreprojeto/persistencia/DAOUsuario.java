@@ -5,10 +5,17 @@
  */
 package br.edu.ifpb.coreprojeto.persistencia;
 
+import br.edu.ifpb.coreprojeto.modelo.AbsNode;
+import br.edu.ifpb.coreprojeto.modelo.Arquivo;
+import br.edu.ifpb.coreprojeto.modelo.TypeNode;
 import br.edu.ifpb.coreprojeto.modelo.Usuario;
 import java.sql.PreparedStatement;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -16,42 +23,81 @@ import java.util.logging.Logger;
  */
 public class DAOUsuario implements IDAO<Usuario>{
 
+    private EntityManager em = FactoryEntetyManagerProjeto.getInstance().getEMF().createEntityManager();
+    
     @Override
-    public Usuario salvar(Usuario o) {
-        String sql = "";
-        if (o.getId() == 0){
-            sql = "insert into usuario (nome, email, senha) values (?,?,?);";
-        }else{
-            sql = "update usuario set (nome = ?, email =?, senha = ?) where id = ?;";
+    public Usuario salvar(Usuario user) {
+        try {
+            em.getTransaction().begin();
+            if (user.getId() != 0){
+                em.merge(user);
+            }else {
+                em.persist(user);
+            }
+            
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
         }
-        return petsiste (sql, o);
+        return user;
     }
 
     @Override
-    public void excluir(Usuario o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void excluir(Usuario user) {
+        
+        try {
+            em.getTransaction().begin();
+            em.remove(user.getId());
+            em.getTransaction().commit();
+            
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
     }
 
     @Override
     public Usuario buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.find(Usuario.class, id);
     }
 
-    private Usuario petsiste(String sql, Usuario o) {
-        try {
-            Conexao con = Conexao.getInstance();
-            PreparedStatement ps = con.getCon().prepareStatement(sql);
-            ps.setString(1, o.getNome());
-            ps.setString(2, o.getEmail());
-            ps.setString(3, o.getSenha());
-            if (o.getId()!=0){
-                ps.setInt(4, o.getId());
-            }
-            
-        } catch (Exception ex) {
-            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return o;
+    public List<Arquivo> findFileTamanho(int tamanho, Usuario user){
+        TypedQuery<Arquivo> query = em.createQuery("Select c from Arquivo c Where c.tamanho <= :tamanho and c.Usuario = :usuario", Arquivo.class);
+        query.setParameter("tamanho",tamanho);
+        query.setParameter("usuario", user);
+        return query.getResultList();
+    }
+    
+    public List<AbsNode> findNodeByType(TypeNode type, Usuario user){
+        TypedQuery<AbsNode> query = em.createQuery("Select c from AbsNode c Where c.type = :tipo and c.Usuario = :usuario", AbsNode.class);
+        query.setParameter("tipo",type);
+        query.setParameter("usuario", user);
+        return query.getResultList();
+     
+    }
+    
+    public List<AbsNode> findyNodeByName(String name, Usuario user){
+        TypedQuery<AbsNode> query = em.createQuery("Select c from AbsNode c Where c.nome LIKE :nome and c.Usuario = :usuario", AbsNode.class);
+        query.setParameter("nome",name + "%");
+        query.setParameter("usuario", user);
+        return query.getResultList();
+     
+    }
+    
+    public List<AbsNode> findNodesCompartilhadosByUser(Usuario user){
+        TypedQuery<AbsNode> query = em.createQuery("Select c from AbsNode c Where c.users = :user ", AbsNode.class);
+        query.setParameter("user",user );
+        return query.getResultList();
+    }
+    /*
+    public List<AbsNode> findNodeCompartilhadoByUser(Usuario user){
+        TypedQuery<AbsNode> query = em.createQuery("Select c from AbsNode c Where c.users", AbsNode.class);
+        query.setParameter("nome",name + "%");
+        query.setParameter("usuario", user);
+        return query.getResultList();
+    }*/
+
+    public Usuario buscar(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

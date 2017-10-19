@@ -7,20 +7,38 @@ package br.edu.ifpb.coreprojeto.modelo;
 
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SecondaryTable;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.TableGenerator;
+import sun.security.util.Password;
+
 
 /**
  * Classe cuida dos dados de um usuario.
  * @author laerton
  */
 @Entity
+@TableGenerator(name = "USUARIO_SEQ", allocationSize = 1)
+//@SecondaryTable(name = "health_care", pkJoinColumns = 
+//  { @PrimaryKeyJoinColumn(name = "id") })
 public class Usuario {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    
+    @Id 
+    @GeneratedValue(generator = "USUARIO_SEQ", 
+            strategy = GenerationType.TABLE)
     private int id;
     @Column(length = 255, nullable = false)
     private String nome;
@@ -28,32 +46,41 @@ public class Usuario {
     private String email;
     @Column(length = 255, nullable = false)
     private String senha;
-    @OneToMany()
-    private List<AbsNode> nodes = new LinkedList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Pasta raiz;
+    public Usuario() {
+        
+    }
     
     
-    public Usuario(int id, String nome, String email, String senha) {
+    
+    public Usuario( int id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
+  
+
     
-    public List<AbsNode> getArquivos() {
-        return nodes;
+    
+    public Pasta getRaiz() {
+        return raiz;
     }
 
-    public void setArquivos(List<AbsNode> arquivos) {
-        this.nodes = arquivos;
+    public void setRaiz(Pasta arquivos) {
+        arquivos.setUsuario(this);
+        this.raiz = arquivos;
     }
     
     public void addArquivo(AbsNode arquivo){
-        this.nodes.add(arquivo);
+        arquivo.setUsuario(this);
+        this.raiz.addNode(arquivo);
     }
     
     public void remArquivo(AbsNode arquivo){
-        this.nodes.remove(arquivo);
+        this.raiz.remNode(arquivo);
     }
     
     public int getId() {
@@ -87,6 +114,7 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
     
     
 }
