@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>coreProjeto</module>
-        <module>../../atividade-cdi-jsf-laerton/FileBox</module>
+        
     </modules>
     <properties>
         <build.number>-SNAPSHOT</build.number>
