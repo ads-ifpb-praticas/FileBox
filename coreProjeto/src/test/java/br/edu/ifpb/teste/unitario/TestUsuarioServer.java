@@ -133,6 +133,11 @@ public class TestUsuarioServer {
      }
      
      @Test(expected = UsuarioException.class)
+     public void testLogaUserEmailInvalido2() throws  UsuarioException{
+         servico.logarUser("laerton281003hotmail.com", "495798");
+     }
+     
+     @Test(expected = UsuarioException.class)
      public void testLogaUserSenhaErrada() throws  UsuarioException{
          servico.logarUser("laerton281003@hotmail.com", "49579");
      }

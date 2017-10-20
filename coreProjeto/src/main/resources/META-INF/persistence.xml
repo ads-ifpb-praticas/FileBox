@@ -8,9 +8,15 @@
     <class>br.edu.ifpb.coreprojeto.modelo.Usuario</class>
     <class>br.edu.ifpb.coreprojeto.modelo.Propriedades</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projetoPraticas"/>
+      <!--property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/projetoPraticas"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="sil495798"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.login.level" value="FINE"/-->
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:~/projetoPraticas;"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="Org.H2.Driver"/>
       <property name="javax.persistence.jdbc.password" value="sil495798"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="eclipselink.login.level" value="FINE"/>
