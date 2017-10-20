@@ -8,7 +8,6 @@
     <modules>
         <module>coreProjeto</module>
         <module>../../atividade-cdi-jsf-laerton/FileBox</module>
-        <module>FileBox</module>
     </modules>
     <properties>
         <build.number>-SNAPSHOT</build.number>
