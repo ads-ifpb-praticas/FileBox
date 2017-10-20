@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.coreprojeto.servico;
 
+import br.edu.ifpb.coreprojeto.anotacao.CoberturaIgnore;
 import br.edu.ifpb.coreprojeto.modelo.AbsNode;
 import br.edu.ifpb.coreprojeto.modelo.Arquivo;
 import br.edu.ifpb.coreprojeto.modelo.FactoryUsuario;
@@ -73,6 +74,7 @@ public class UsuarioServer
         this.user = user;
     }
   
+    @CoberturaIgnore
     public Propriedades getPropriedades(){
         return this.user.getPropriedades();
     }

@@ -7,27 +7,15 @@ package br.edu.ifpb.teste.unitario;
 
 import br.edu.ifpb.coreprojeto.modelo.AbsNode;
 import br.edu.ifpb.coreprojeto.modelo.Arquivo;
-import br.edu.ifpb.coreprojeto.modelo.FactoryUsuario;
 import br.edu.ifpb.coreprojeto.modelo.Pasta;
 import br.edu.ifpb.coreprojeto.modelo.TypeNode;
 import br.edu.ifpb.coreprojeto.modelo.Usuario;
 import br.edu.ifpb.coreprojeto.persistencia.DAOUsuario;
-import br.edu.ifpb.coreprojeto.persistencia.FactoryEntetyManagerProjeto;
-import java.util.LinkedList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import org.mockito.Mock;
-import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
 
 /**
  *
@@ -35,8 +23,10 @@ import org.mockito.MockitoAnnotations;
  */
 public class TestDAOUsuario {
     
+    
     public TestDAOUsuario() {
     }
+    
     private  DAOUsuario dao = null;
     private  Usuario user ;
     
@@ -116,8 +106,6 @@ public class TestDAOUsuario {
     public void testbuscarByEmail(){
         Usuario u1 = dao.buscarByEmail("laertonmarques@uol.com.br");
         assertNotNull(u1);
-        //Usuario u2 = dao.buscarByEmail("laerton@hotmail.com");
-        //assertNull(u2);
     }
     
     @Test(expected = NoResultException.class) 

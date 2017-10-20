@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.coreprojeto.modelo;
 
+import br.edu.ifpb.coreprojeto.anotacao.CoberturaIgnore;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,8 +28,10 @@ public class Pasta extends AbsNode {
         super.type = TypeNode.DIRETORIO;
     }
     
+    
     @Override
     @Transient
+    @CoberturaIgnore
     public long getTamanho() {
         long tamanho = 0;
         for (AbsNode absNode : conteudo) {
@@ -37,7 +40,9 @@ public class Pasta extends AbsNode {
         return tamanho;
     }
 
+    
     @Override
+    @CoberturaIgnore
     public List<Usuario> getCompartilhado() {
         List<Usuario> usuarios =new LinkedList<>();
         for (AbsNode absNode : conteudo) {
@@ -52,6 +57,7 @@ public class Pasta extends AbsNode {
     }
 
     @Override
+    @CoberturaIgnore
     public void addCompartilhado(Usuario user) throws Exception {
         super.addCompartilhado(user);
         

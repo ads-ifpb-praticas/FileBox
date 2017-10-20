@@ -69,6 +69,15 @@ public class TestDAONode {
          dao.salvar(pasta);
      }
      
+     @Test
+     public void testRemoveAllCompartilahdo(){
+         Pasta p = (Pasta) dao.buscar(1);
+         p.remAllCompartilhado();
+         dao.salvar(pasta);
+         Pasta p2 = (Pasta) dao.buscar(1);
+         assertEquals(0, p2.getCompartilhado().size());
+     }
+     
      
      
     

@@ -7,6 +7,7 @@ package br.edu.ifpb.teste.unitario;
 
 import br.edu.ifpb.coreprojeto.modelo.AbsNode;
 import br.edu.ifpb.coreprojeto.modelo.Arquivo;
+import br.edu.ifpb.coreprojeto.modelo.FactoryUsuario;
 import br.edu.ifpb.coreprojeto.modelo.Pasta;
 import br.edu.ifpb.coreprojeto.modelo.Propriedades;
 import br.edu.ifpb.coreprojeto.modelo.Usuario;
@@ -100,7 +101,8 @@ public class TestUsuarioServer {
         when(dao.buscarByEmail("laerton281003@hotmail.com")).thenReturn(user);
         when(dao.findFileTamanhoMax(2000, user)).thenReturn(at2000);
         when(dao.findFileTamanhoMin(2000, user)).thenReturn(mi2000);
-     
+        when(dao.salvar(any(Usuario.class))).thenReturn(user);
+        
         servico = new UsuarioServer(user);
         servico.setDao(dao);
         servico.setDaoNode(daoNode);
@@ -130,6 +132,17 @@ public class TestUsuarioServer {
          servico.logarUser("laerton281003@hotmail", "495798");
      }
      
+     @Test(expected = UsuarioException.class)
+     public void testLogaUserSenhaErrada() throws  UsuarioException{
+         servico.logarUser("laerton281003@hotmail.com", "49579");
+     }
+     
+     @Test
+     public void testNovoUsuaior(){
+         servico.setUser(FactoryUsuario.factoryUsuario("Laerton Marques de Figueiredo", "laerton281003@hotmail.com", "495798", dao));
+         assertNotNull(servico.getUser());
+         assertEquals("Laerton Marques de Figueiredo", servico.getUser().getNome());
+     }
      
      @Test
      public void testAddPasta() throws Exception {
@@ -237,6 +250,13 @@ public class TestUsuarioServer {
          
      }
      
+     @Test(expected = Exception.class)
+     public void testCompartilhaArquivoParaUsuarioNull() throws Exception{
+         List<AbsNode> lista = servico.getUser().getRaiz().getConteudo();
+         Arquivo arq = (Arquivo) lista.get(0);
+         servico.compartilharNode(arq, null);
+         
+     }
      @Test
      public void testbuscaArquivosPorTamanhoMax(){
          List<Arquivo> lista = servico.buscaArquivosPorTamanhoMax(2000);

@@ -5,6 +5,7 @@
  */
 package br.edu.ifpb.coreprojeto.modelo;
 
+import br.edu.ifpb.coreprojeto.anotacao.CoberturaIgnore;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -41,7 +42,7 @@ public class Arquivo extends AbsNode{
     public List<Usuario> getCompartilhado() {
         return super.users;
     }
-
+    @CoberturaIgnore
     @Override
     public void setCompartilhado(List<Usuario> usuarios) {
         super.users=usuarios;
@@ -53,11 +54,13 @@ public class Arquivo extends AbsNode{
         this.users.add(user);
     }
 
+    @CoberturaIgnore
     @Override
     public void remCompartilhado(Usuario user) {
         this.users.remove(user);
     }
 
+    @CoberturaIgnore
     @Override
     public void remAllCompartilhado() {
         this.users = new LinkedList<>();
