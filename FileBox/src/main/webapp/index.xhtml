@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sistema de Cadastro de Produtos</title>
+        <!-- Última versão CSS compilada e minificada -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+        <!-- Tema opcional -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+
+        <!-- Última versão JavaScript compilada e minificada -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    </h:head>
+    <h:body>
+        <header>
+            <ui:insert name="MENU">
+            <nav class="navbar navbar-default">
+                <!--ui:insert name="menu"-->
+                  <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="#">ATIVIDADE PRATICAS</a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="/atividade-cdi-jsf-laerton/index.xhtml">Home</a></li>
+                            <li><a href="/atividade-cdi-jsf-laerton/cadastro-categoria.xhtml">Categoria</a></li>
+                            <li><a href="/atividade-cdi-jsf-laerton/cadastro-produto.xhtml">Produto</a></li>
+                            <li><a href="/atividade-cdi-jsf-laerton/lista-produtos.xhtml">Listar produtos</a></li>
+                    </ul>
+                  </div><!--/.nav-collapse -->
+                </div><!--/.container-fluid -->
+                <!--/ui:insert-->
+            </nav>    
+        
+            </ui:insert>
+        </header>      
+        
+        <section id="content">
+            <ui:insert name="content">
+                <h1><strong>Seja bem-vindo ao aplicativo!</strong></h1>
+            </ui:insert>
+        </section>
+        
+        <footer id="bottom-bar">
+            <ui:insert name="content-bar">
+                <p>&copy; Todos os direitos reservados, 2017</p>
+            </ui:insert>
+        </footer>
+    </h:body>
+</html>
+
