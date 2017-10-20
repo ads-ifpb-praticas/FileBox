@@ -17,7 +17,7 @@ import br.edu.ifpb.coreprojeto.persistencia.DAONODE;
 import br.edu.ifpb.coreprojeto.persistencia.DAOUsuario;
 import br.edu.ifpb.exception.UsuarioException;
 import java.util.List;
-import javax.persistence.metamodel.StaticMetamodel;
+
 
 
 

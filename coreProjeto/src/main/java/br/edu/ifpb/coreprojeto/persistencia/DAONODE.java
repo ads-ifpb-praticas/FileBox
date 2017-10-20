@@ -6,12 +6,7 @@
 package br.edu.ifpb.coreprojeto.persistencia;
 
 import br.edu.ifpb.coreprojeto.modelo.AbsNode;
-import br.edu.ifpb.coreprojeto.modelo.Arquivo;
-import br.edu.ifpb.coreprojeto.modelo.TypeNode;
-import br.edu.ifpb.coreprojeto.modelo.Usuario;
-import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**

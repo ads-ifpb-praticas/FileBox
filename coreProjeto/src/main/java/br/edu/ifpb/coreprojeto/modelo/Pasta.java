@@ -6,7 +6,6 @@
 package br.edu.ifpb.coreprojeto.modelo;
 
 import br.edu.ifpb.coreprojeto.anotacao.CoberturaIgnore;
-import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.CascadeType;

@@ -9,9 +9,6 @@ import br.edu.ifpb.coreprojeto.anotacao.CoberturaIgnore;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Classe relacionada a um arquivo.

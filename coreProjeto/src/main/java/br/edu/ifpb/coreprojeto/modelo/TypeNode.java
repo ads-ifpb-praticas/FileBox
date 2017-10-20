@@ -5,7 +5,7 @@
  */
 package br.edu.ifpb.coreprojeto.modelo;
 
-import javax.persistence.Entity;
+
 
 /**
  *
