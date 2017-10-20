@@ -9,12 +9,14 @@ import br.edu.ifpb.coreprojeto.modelo.AbsNode;
 import br.edu.ifpb.coreprojeto.modelo.Arquivo;
 import br.edu.ifpb.coreprojeto.modelo.FactoryUsuario;
 import br.edu.ifpb.coreprojeto.modelo.Pasta;
+import br.edu.ifpb.coreprojeto.modelo.Propriedades;
 import br.edu.ifpb.coreprojeto.modelo.TypeNode;
 import br.edu.ifpb.coreprojeto.modelo.Usuario;
 import br.edu.ifpb.coreprojeto.persistencia.DAONODE;
 import br.edu.ifpb.coreprojeto.persistencia.DAOUsuario;
-import br.edu.ifpb.validadores.ValidaUsuario;
+import br.edu.ifpb.exception.UsuarioException;
 import java.util.List;
+import javax.persistence.NoResultException;
 
 
 /**
@@ -27,12 +29,17 @@ public class UsuarioServer
     private DAOUsuario dao;
     private DAONODE daoNode;
     
-    public UsuarioServer(String nome, String email, String senha){
-        user = FactoryUsuario.factoryUsuario(nome, email, senha);
-        dao = new DAOUsuario();
-        daoNode = new DAONODE();
-    }
 
+    public void logarUser(String email, String senha) throws UsuarioException 
+    {
+        Usuario usuario = dao.buscarByEmail(email);
+        if (usuario == null || !usuario.getSenha().equals(senha))
+        {
+            throw new  UsuarioException("E-mail ou senha do usuario invalido.");
+        }
+        this.user = usuario;
+    }
+    
     public UsuarioServer(Usuario user) {
         
         this.user = user;
@@ -40,6 +47,24 @@ public class UsuarioServer
         daoNode = new DAONODE();
     }
 
+    public DAOUsuario getDao() {
+        return dao;
+    }
+
+    public void setDao(DAOUsuario dao) {
+        this.dao = dao;
+    }
+
+    public DAONODE getDaoNode() {
+        return daoNode;
+    }
+
+    public void setDaoNode(DAONODE daoNode) {
+        this.daoNode = daoNode;
+    }
+
+    
+    
     public Usuario getUser() {
         return user;
     }
@@ -47,9 +72,19 @@ public class UsuarioServer
     public void setUser(Usuario user) {
         this.user = user;
     }
+  
+    public Propriedades getPropriedades(){
+        return this.user.getPropriedades();
+    }
+    
+    public void setPropriedades(Propriedades propriedades){
+        this.user.setPropriedades(propriedades);
+        salvar();
+    }
     
     public void addPasta(Pasta pasta) throws Exception{
-        String raiz = this.user.getRaiz().getEndereco() + pasta.getNome();
+        String raiz = this.user.getRaiz().getEndereco() + "//" + pasta.getNome();
+        
         FileManeger.mkdirExecute(raiz);
         user.addArquivo(pasta);
         salvar();
@@ -63,12 +98,19 @@ public class UsuarioServer
         this.user = dao.buscar(user.getId());
     }
     
+    public Pasta getNodes(){
+        return user.getRaiz();
+    }
     public void addArquivo(Arquivo arquivo, String enderecorigem) throws Exception{
         addArquivo(arquivo ,enderecorigem, this.user.getRaiz());
     }
 
     public void addArquivo(Arquivo arquivo, String enderecorigem, Pasta destino) throws Exception {
-        FileManeger.copyExecute(enderecorigem, destino.getEndereco());
+        if (arquivo.getTamanho() > user.getPropriedades().getTamanho()){
+            throw  new Exception("Arquivo acima do tamanho limite.");
+        }
+        arquivo.setTamanho(FileManeger.sizeFile(destino.getEndereco()+ "//" + arquivo.getNome()));
+        FileManeger.copyExecute(enderecorigem, destino.getEndereco()+ "//" + arquivo.getNome());
         destino.addNode(arquivo);
         user.addArquivo(destino);
         salvar();
@@ -76,6 +118,7 @@ public class UsuarioServer
     
     public void remArquivo(Arquivo arquivo){
         FileManeger.delExecute(arquivo.getEndereco() + arquivo.getNome());
+        user.remArquivo(arquivo);
         daoNode.excluir(arquivo);
         atualizar();
     }
@@ -90,8 +133,12 @@ public class UsuarioServer
         return dao.findNodesCompartilhadosByUser(user);
     }
    
-    public List<Arquivo> buscaArquivosPorTamanho(int tamanho){
-        return dao.findFileTamanho(tamanho, user);
+    public List<Arquivo> buscaArquivosPorTamanhoMax(int tamanho){
+        return dao.findFileTamanhoMax(tamanho, user);
+    }
+    
+    public List<Arquivo> buscaArquivosPorTamanhoMin(int tamanho){
+        return dao.findFileTamanhoMin(tamanho, user);
     }
     
     public List<AbsNode> buscaNodePorNome(String nome){
@@ -99,7 +146,7 @@ public class UsuarioServer
     }
     
     public Usuario buscaUsuarioPorNome(String nome){
-        return dao.buscar(nome);
+        return dao.buscarByNome(nome);
     }
     
     public List<AbsNode> buscarNodePorTipo (TypeNode type){

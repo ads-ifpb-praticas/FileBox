@@ -54,7 +54,7 @@ public abstract class AbsNode {
     
     @ManyToMany()
     protected List<Usuario> users  = new LinkedList<>();
-    protected Integer tamanho;
+    protected long tamanho;
     @Enumerated(EnumType.ORDINAL)
     protected TypeNode type;
 
@@ -62,7 +62,7 @@ public abstract class AbsNode {
         return Usuario;
     }
 
-    public Integer getTamanho() {
+    public long getTamanho() {
         return tamanho;
     }
 
@@ -79,7 +79,7 @@ public abstract class AbsNode {
         this.parent = node;
     }
 
-    public List<Usuario> getCompartilahdo() {
+    public List<Usuario> getCompartilhado() {
         return users;
     }
 
@@ -133,10 +133,6 @@ public abstract class AbsNode {
             this.endereco =  endereco;
     }
     
-    
-    
-    public abstract List<Usuario> getCompartilhado();
-
     
     public abstract void setCompartilhado(List<Usuario> usuarios);
 

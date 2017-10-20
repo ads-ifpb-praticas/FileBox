@@ -13,18 +13,19 @@ import br.edu.ifpb.coreprojeto.persistencia.DAOUsuario;
  */
 public class FactoryUsuario {
     
-    public static Usuario factoryUsuario(String nome, String email, String senha)
+    public static Usuario factoryUsuario(String nome, String email, String senha, DAOUsuario DAO)
     {
         Usuario user = new Usuario(0, nome, email, senha);
-        DAOUsuario dao = new DAOUsuario();
+        DAOUsuario dao = DAO;
         user = dao.salvar(user);
         Pasta raiz = new Pasta();
         raiz.setNome(String.valueOf(user.getId()));
-        raiz.setEndereco("\\" + raiz.getNome());
+        raiz.setEndereco(raiz.getNome());
         user.setRaiz(raiz);
         user = dao.salvar(user);
-        
         return user;
         
     }
+
+    
 }

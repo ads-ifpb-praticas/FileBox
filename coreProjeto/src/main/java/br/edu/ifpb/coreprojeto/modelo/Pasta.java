@@ -29,8 +29,8 @@ public class Pasta extends AbsNode {
     
     @Override
     @Transient
-    public Integer getTamanho() {
-        Integer tamanho = 0;
+    public long getTamanho() {
+        long tamanho = 0;
         for (AbsNode absNode : conteudo) {
             tamanho += absNode.getTamanho();
         }
@@ -89,7 +89,7 @@ public class Pasta extends AbsNode {
     public void addNode(AbsNode node){
         node.setParent(this);
         node.setUsuario(this.Usuario);
-        node.setEndereco(this.endereco +"\\" + node.getEndereco());
+        node.setEndereco(this.endereco +"//" + node.getEndereco());
         conteudo.add(node);
     }
    

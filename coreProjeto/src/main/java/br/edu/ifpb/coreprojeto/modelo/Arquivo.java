@@ -28,12 +28,12 @@ public class Arquivo extends AbsNode{
     }
 
     
-    public void setTamanho(Integer tamanho) {
+    public void setTamanho(long tamanho) {
         super.tamanho =tamanho;
     }
 
     @Override
-    public Integer getTamanho() {
+    public long getTamanho() {
         return super.tamanho;
     }
 

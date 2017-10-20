@@ -60,8 +60,15 @@ public class DAOUsuario implements IDAO<Usuario>{
         return em.find(Usuario.class, id);
     }
 
-    public List<Arquivo> findFileTamanho(int tamanho, Usuario user){
+    public List<Arquivo> findFileTamanhoMax(int tamanho, Usuario user){
         TypedQuery<Arquivo> query = em.createQuery("Select c from Arquivo c Where c.tamanho <= :tamanho and c.Usuario = :usuario", Arquivo.class);
+        query.setParameter("tamanho",tamanho);
+        query.setParameter("usuario", user);
+        return query.getResultList();
+    }
+    
+    public List<Arquivo> findFileTamanhoMin(int tamanho, Usuario user){
+        TypedQuery<Arquivo> query = em.createQuery("Select c from Arquivo c Where c.tamanho >= :tamanho and c.Usuario = :usuario", Arquivo.class);
         query.setParameter("tamanho",tamanho);
         query.setParameter("usuario", user);
         return query.getResultList();
@@ -88,16 +95,18 @@ public class DAOUsuario implements IDAO<Usuario>{
         query.setParameter("user",user );
         return query.getResultList();
     }
-    /*
-    public List<AbsNode> findNodeCompartilhadoByUser(Usuario user){
-        TypedQuery<AbsNode> query = em.createQuery("Select c from AbsNode c Where c.users", AbsNode.class);
-        query.setParameter("nome",name + "%");
-        query.setParameter("usuario", user);
-        return query.getResultList();
-    }*/
-
-    public Usuario buscar(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Usuario buscarByNome(String nome) {
+        TypedQuery<Usuario> query = em.createQuery("Select u from Usuario u where u.nome LIKE :nome ", Usuario.class);
+        query.setParameter("nome",nome );
+        return query.getSingleResult();
     }
+    
+    public Usuario buscarByEmail(String email) {
+        TypedQuery<Usuario> query = em.createQuery("Select u from Usuario u where u.email = :email ", Usuario.class);
+        query.setParameter("email",email );
+        return query.getSingleResult();
+    }
+    
     
 }

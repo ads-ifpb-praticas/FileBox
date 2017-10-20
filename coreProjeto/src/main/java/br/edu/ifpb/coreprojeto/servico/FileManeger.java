@@ -21,25 +21,11 @@ public class FileManeger {
 	 * @param path Caminho do diretorio a ser criado
 	 */
 	public static boolean mkdirExecute(String path) throws Exception{
-		
 		File file = new File(path);
 		return file.mkdir();
 	}
         
-        /**
-	 * Lista o conteudo do diretorio especificado pelo parametro <i>path</i>.
-	 * Primeiro os diretorios, depois os arquivos, listados em ordem alfabetica.
-	 * @param path Caminho do diretorio a ser listado
-	 */
-	public static String[] dirExecute(String path) throws Exception{
-
-		File file = new File(path);
-		String[] rawFileList = null;
-		TreeSet<String> dirList  = new TreeSet<String>();
-		TreeSet<String> fileList = new TreeSet<String>();
-		rawFileList = file.list();
-                return rawFileList;
-	}
+        
         
         
         /**
@@ -70,6 +56,10 @@ public class FileManeger {
                 fis.close();
                 return true;
 	}
+        
+        public static long sizeFile(String origem){
+            return new File (origem).length();
+        }
         
         
         

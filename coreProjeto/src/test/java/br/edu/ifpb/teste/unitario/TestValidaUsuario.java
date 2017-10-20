@@ -28,11 +28,11 @@ public class TestValidaUsuario {
         
     }
     
-     private Usuario user1;
-     private Usuario user2;
-     private Usuario user3;
-     private Usuario user4;
-     private Usuario user5;
+     private Usuario user1 = new Usuario();
+     private Usuario user2 = new Usuario();
+     private Usuario user3 = new Usuario();
+     private Usuario user4 = new Usuario();
+     private Usuario user5 = new Usuario();
      
      
      @Before
@@ -77,7 +77,7 @@ public class TestValidaUsuario {
      
      @Test(expected = UsuarioException.class)
      public void testValidaEmailIncompleto()throws UsuarioException{
-         assertTrue(ValidaUsuario.ValidaEmail(user3.getEmail()));
+         assertTrue(ValidaUsuario.ValidaEmail(user2.getEmail()));
      }
      
      @Test(expected = UsuarioException.class)
@@ -96,7 +96,7 @@ public class TestValidaUsuario {
      }
      
      @Test(expected = UsuarioException.class)
-     public void testValidaSenhaVasia()throws UsuarioException{
+     public void testValidaSenhaVazia()throws UsuarioException{
          assertTrue(ValidaUsuario.validaSenha(user2.getSenha()));
      }
 }

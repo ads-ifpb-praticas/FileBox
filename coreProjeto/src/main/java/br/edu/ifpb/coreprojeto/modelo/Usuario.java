@@ -48,6 +48,9 @@ public class Usuario {
     private String senha;
     @OneToOne(cascade = CascadeType.ALL)
     private Pasta raiz;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Propriedades propriedades;
+    
     public Usuario() {
         
     }
@@ -61,7 +64,16 @@ public class Usuario {
         this.senha = senha;
     }
 
-  
+    public Propriedades getPropriedades() {
+        return propriedades;
+    }
+
+    public void setPropriedades(Propriedades propriedades) {
+        propriedades.setUser(this);
+        this.propriedades = propriedades;
+    }
+
+    
 
     
     

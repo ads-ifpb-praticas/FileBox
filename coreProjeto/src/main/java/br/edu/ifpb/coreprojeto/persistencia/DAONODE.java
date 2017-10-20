@@ -52,7 +52,10 @@ public class DAONODE implements IDAO<AbsNode>{
 
     @Override
     public AbsNode buscar(int id) {
-        return em.find(AbsNode.class, id);
+        //return em.find(AbsNode.class, id);
+        TypedQuery<AbsNode> query = em.createQuery("Select u from AbsNode u where u.id = :id ", AbsNode.class);
+        query.setParameter("id",id );
+        return query.getSingleResult();
     }
 
     
